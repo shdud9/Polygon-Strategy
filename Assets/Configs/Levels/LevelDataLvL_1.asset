@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a1c361763c44d992fd31500d3bcfa6, type: 3}
+  m_Name: LevelDataLvL_1
+  m_EditorClassIdentifier: 
+  Waves:
+  - enemies:
+    - enemyPrefab: {fileID: 1482802332556728862, guid: 288e227d6b4a25748b1eaa565300739a, type: 3}
+      count: 5
+  - enemies:
+    - enemyPrefab: {fileID: 1482802332556728862, guid: 288e227d6b4a25748b1eaa565300739a, type: 3}
+      count: 10
+  GridPrefab: {fileID: 7220467693591570939, guid: 07acf001f2d0ee141a4f77b278f44fbf, type: 3}
+  enemyTargetPoints: {fileID: 3086648468190337700, guid: 4c20877efa821ea46b5d23d08a926f9e, type: 3}

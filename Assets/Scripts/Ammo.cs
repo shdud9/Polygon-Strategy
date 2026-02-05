@@ -5,13 +5,14 @@ namespace DefaultNamespace
 {
     public class Ammo : MonoBehaviour
     {
-        public int damage = 12;
+        private int damage = 12;
         public float speed = 10f;
         
         private Enemy target;
-        public void Shoot(Enemy enemy)
+        public void Shoot(Enemy enemy,int dmg)
         {
             target = enemy;
+            damage = dmg;
         }
 
         private void Update()

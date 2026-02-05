@@ -5,6 +5,7 @@ namespace Enemies
 {
     public class Enemy : MonoBehaviour
     {
+        public int reward = 10;
         public int health = 100;
         public float rotationspeed = 90f;
         private int currentWaypointIndex = 0;
@@ -12,7 +13,7 @@ namespace Enemies
         
         [HideInInspector] public EnemyTargetPoints targetPoints;
 
-        public event Action Death;
+        public event Action<Enemy> Death;
 
         public void Init(EnemyTargetPoints waypoints)
         {
@@ -49,7 +50,7 @@ namespace Enemies
                 Debug.LogWarning("KillCounter Instance не найден! Убедитесь, что объект со скриптом KillCounter есть на сцене.");
             }
 
-            Death?.Invoke();
+            Death?.Invoke(this);
             Destroy(gameObject);
         }
 

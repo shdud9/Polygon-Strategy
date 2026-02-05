@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class TowerPlacer : MonoBehaviour
 {
+    public CoinsManager coinsManager;
     public Camera cam;
     private Grid _grid;
     public TowerSelector towerSelector;
@@ -38,29 +39,34 @@ public class TowerPlacer : MonoBehaviour
     {
         if (towerSelector.TowerPrefab)
         {
-        Debug.Log("Click");
-                Vector2 mousePosition = input.Gameplay.Point.ReadValue<Vector2>();
-                Ray ray = cam.ScreenPointToRay(mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit))
+            if (coinsManager.CoinsCount >= towerSelector.TowerPrefab.cost) 
+            {
+            Vector2 mousePosition = input.Gameplay.Point.ReadValue<Vector2>();
+            Ray ray = cam.ScreenPointToRay(mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                BuildableTile tile = hit.collider.GetComponent<BuildableTile>();
+                if (tile == null)
                 {
-                    BuildableTile tile = hit.collider.GetComponent<BuildableTile>();
-                    if (tile == null)
-                    {
-                        return;
-                    }
-                    if (tile.IsOccupied)
-                    { 
-                        return; 
-                    }
-                    Vector3Int cell = _grid.WorldToCell(hit.point);
-                    Vector3 center = _grid.GetCellCenterWorld(cell);
-                    center.y += 0.3f;
-                    BuildableTower tower = Instantiate(towerSelector.TowerPrefab, center, Quaternion.identity);
-                    tile.Placetower(tower);
+                    return;
+                }
+                if (tile.IsOccupied)
+                { 
+                    return; 
+                }
+                Vector3Int cell = _grid.WorldToCell(hit.point);
+                Vector3 center = _grid.GetCellCenterWorld(cell);
+                center.y += 0.3f;
+                BuildableTower tower = Instantiate(towerSelector.TowerPrefab, center, Quaternion.identity);
+                tile.Placetower(tower);
+                coinsManager.SpendCoins(towerSelector.TowerPrefab.cost);
+
                     
                     
                     
-                }    
+            }    
+            }
+                
         }
         
     }

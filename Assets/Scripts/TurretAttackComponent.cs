@@ -102,7 +102,7 @@ public class TurretAttackComponent : MonoBehaviour
           if (currentTarget && _currentAttackCooldown >= attackCooldown)
           {
                Ammo ammo  = Instantiate(ammoPrefab, ammoSpawnPosition.position, Quaternion.identity);
-               ammo.Shoot(currentTarget);
+               ammo.Shoot(currentTarget,damage);
               
                _currentAttackCooldown = 0f;
                ammo.transform.rotation = towerPivot.rotation;

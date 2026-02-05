@@ -6,6 +6,7 @@ namespace Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {
+       public CoinsManager _coinsManager;
         [SerializeField] private float spawnDelay = 0.5f;
         [SerializeField] private float timeBetweenWaves = 10f; // Задержка 10 секунд
 
@@ -59,12 +60,14 @@ namespace Enemies
 
             // Подписываемся на событие Death конкретного экземпляра врага
             enemy.Death += OnEnemyDied;
+            
         }
 
         // Этот метод вызовется автоматически, когда у врага произойдет событие Death
-        private void OnEnemyDied()
+        private void OnEnemyDied(Enemy enemy)
         {
             _remainingEnemiesInWave--;
+           _coinsManager.AddCoins(enemy.reward); 
         }
     }
 }
